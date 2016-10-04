@@ -1,0 +1,231 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<style>
+body {
+	background-color: rgba(255,255,255,0.8);
+}
+
+ul {
+	cursor:default;
+	list-style-type: none;
+	width: 150px;
+}
+
+ul.modifications li {
+	position: relative;
+	margin-bottom: 5px;
+}
+
+ul.modifications li > div {
+	height: 75px;
+	width: 175px;
+}
+
+ul.parts_list{
+	display: none;
+	position: absolute;
+	float: left;
+	width: 50%;
+	left: 160px;
+	top: 0px;
+	height: 50px;
+}
+
+div.name{
+	width: 100%;
+	height: 70%;
+	font-size: 1.4vw;
+	text-align: center;
+}
+
+div.choice{
+	width: 100%;
+	font-size: 1.4vh;
+	text-align: center;
+}
+
+.button{
+	border: none;
+	color: #FFF;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	font-family: Verdana;
+	padding: 10px 10px;
+	box-shadow: inset 0px 1px 1px 0 #90ADD2,0px 5px 0px 0 #223955,0px 8px 5px 0 #B3B3B3;
+	-moz-box-shadow: inset 0px 1px 1px 0 #90ADD2,0px 5px 0px 0 #223955,0px 8px 5px 0 #B3B3B3;
+	-webkit-box-shadow: inset 0px 1px 1px 0 #90ADD2,0px 5px 0px 0 #223955,0px 8px 5px 0 #B3B3B3;
+	text-shadow: 0 1px 0 #48576D;
+	background-image: linear-gradient(to right, #FF0000, #611212);
+	background-color: #4471a9;
+}
+
+.button:hover, .button:active{
+	border: none;
+	color: #FFF;
+	box-shadow: inset 0px 1px 0px 0 #90ADD2,0px 2px 0px 0 #223955,0px 4px 3px 0 #6B6B6B;
+	-moz-box-shadow: inset 0px 1px 0px 0 #90ADD2,0px 2px 0px 0 #223955,0px 4px 3px 0 #6B6B6B;
+	-webkit-box-shadow: inset 0px 1px 0px 0 #90ADD2,0px 2px 0px 0 #223955,0px 4px 3px 0 #6B6B6B;
+	background-color: #395e8d;
+}
+
+ul.parts_list li{
+	display: inline-block;
+	border: none;
+	color: #FFF;
+	width: 200px;
+	height: 25px;
+	padding: 2px;
+	border-radius: 0px 0px 3px;
+	-webkit-border-radius: 0px 0px 15px;
+	-moz-border-radius: 0px 0px 15px;
+	font-family: Arial Black;
+	font-size: 16px;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: #000 0px 1px #000;
+	background-image: linear-gradient(to right, #611212, #FF0000);
+	background-color: #FC0000;
+}
+
+ul.parts_list li:hover, .ul.parts_list li:active{
+	border: none;
+	color: #FFF;
+	box-shadow: inset 0px 2px 0px 0 #EB0C0C;
+	-moz-box-shadow: inset 0px 2px 0px 0 #EB0C0C;
+	-webkit-box-shadow: inset 0px 2px 0px 0 #EB0C0C;
+	background-color: #CC0202;
+}
+
+a#Atomic_Button {
+	margin-top: 20px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100));
+	background:-moz-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+	background:-webkit-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+	background:-o-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+	background:-ms-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+	background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00', endColorstr='#ce0100',GradientType=0);
+	background-color:#fe1a00;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #d83526;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:50px 40px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+
+a#Atomic_Button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00));
+	background:-moz-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+	background:-webkit-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+	background:-o-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+	background:-ms-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00',GradientType=0);
+	background-color:#ce0100;
+}
+
+a#Atomic_Button:active {
+	position:relative;
+	top:1px;
+}
+
+img {
+	position: absolute;
+	float: right;
+	top: 50px;
+	right: 180px;
+	
+}
+</style>
+</head>
+<script>
+
+// IIFE - Immediately Invoked Function Expression
+(function(code) {
+	// The global jQuery object is passed as a parameter
+	code(window.jQuery, window, document);
+	
+	}(function($, window, document) {
+
+		// The $ is now locally scoped 
+		// Listen for the jQuery ready event on the document
+		$(function() {
+		
+		// Tak, to miała być lista obiektów... Ale klasy nie są obsługiwane...
+			var categories = [
+								['Skin',['Dessert','Snow','Gold']],
+								['Upper rail',['Stock','Strenghten']],
+								['Sight',['USMC 4x32', 'TA01NSN ACOG']],
+								['Side Mount',['Laser Sight','Flashlight']],
+								['Under Mount',['Grenade Launcher','Front Grip']],
+								['Barrel',['Long','Short']],
+								['Muzzle',['Standard','Muzzle Break', 'Silencer']],
+								['Magazine',['Standard','Extended','Double']],
+								['Ammunition',['Armor Piercing','Incendentary','Hollow-point']]
+							];
+			var list = "";
+			$.each(categories,function(index,value){
+				list += GetRepresentation(value);	
+			});
+			
+			$("ul.modifications").append(list);
+			
+			$('ul.modifications > li > div').on("click", function(){
+				$('ul.parts_list').fadeOut(10);
+				$(this).parent().children('ul#'+this.id).show(10);
+			});
+			
+			$('ul.parts_list > li').on("click", function(){
+				$('ul.parts_list').fadeOut(10);
+				var thisElement = $(this);
+				thisElement.parent().parent().find('div.choice').text(thisElement.attr('name'));
+			});
+			
+		});
+
+		// The rest of the code goes here!
+		
+		function GetRepresentation(value){
+			var representation = "";
+			representation += "<li>";
+			representation += "<div class=button id="+DeleteWhiteSpaces(value[0])+">";
+			representation += "<div class=name>"+value[0]+"</div><div class=choice>"+value[1][0]+"</div>";
+			representation += "</div>"
+			representation += "<ul id='"+DeleteWhiteSpaces(value[0])+"' class=parts_list>";
+			for(var i=0;i < value[1].length; i++)
+				representation += "<li class='"+DeleteWhiteSpaces(value[0])+"' name='"+value[1][i]+"'>"+value[1][i]+"</li>";
+			representation += "</ul>";
+			representation += "</li>";
+			return representation;
+		}
+		
+		function DeleteWhiteSpaces(text){
+			return text.replace(/ /g,'');
+		}
+		
+		blu_event("damage_player", 10);
+		blu_event("damage_player", 10);
+		blu_event("damage_player", 10);
+	}
+));
+</script>
+<body>
+<ul class='modifications'>
+</ul>
+<img src="bizon.png"></img>
+<a href="#" onclick="blu_event('kill_everyone','Over 9000 damage!')" id=Atomic_Button >Nuclear war!</a>
+</body>
+</html>
